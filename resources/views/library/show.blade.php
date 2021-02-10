@@ -13,41 +13,76 @@
             </div>
         </div>
     </div>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                <a href="{{ route('books.create')}}">Add a new book</a>
+    <div class="flex flex-col py-12">
+        <div class="{{---my-2 overflow-x-auto sm:-mx-6 lg:-mx-8--}} max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg shadow-xl">
 
-                <table>
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Genre</th>
-                        <th>Quantity</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
+                    <a href="{{ route('books.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border
+                border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest
+                hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900
+                focus:shadow-outline-gray transition ease-in-out duration-150">Back to Library</a>
 
+                    <a href="{{ route('books.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800
+                    border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest
+                    hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900
+                    focus:shadow-outline-gray transition ease-in-out duration-150">Add New Book</a>
+
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
                         <tr>
-                            <td>{{ $book->id }}</td>
-                            <td>{{ $book->title }}</td>
-                            <td>{{ $book->author }}</td>
-                            <td>{{ $book->genre }}</td>
-                            <td>{{ $book->quantity }}</td>
-                            <td><a href="{{ route('books.edit', $book->id) }}">Edit</a></td>
-                            {{--                            <td><a href="{{ route('books.destroy', $book->id) }}">Delete</a></td>--}}
-                            <form class="inline-block" action="{{ route('books.destroy', $book->id) }}"
-                                  method="POST" onsubmit="return confirm('Are you sure?');">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2"
-                                       value="Delete">
-                            </form>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Id
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Title
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Author
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Genre
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Quantity
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
                         </tr>
-                </table>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+
+                            <tr>
+                                <td class="px-6 py-3">{{ $book->id }}</td>
+                                <td class="px-6 py-3">{{ $book->title }}</td>
+                                <td class="px-6 py-3">{{ $book->author }}</td>
+                                <td class="px-6 py-3">{{ $book->genre }}</td>
+                                <td class="inline-flex items-center px-4 py-2 bg-gray-700 border
+                                rounded-full font-semibold text-xs text-white uppercase tracking-widest ">{{ $book->quantity }}</td>
+                                <td>
+                                    <a href="{{ route('books.show', $book->id) }}" class="text-indigo-600
+                                    hover:text-indigo-900 mb-2 mr-2">Display</a>
+                                    <a href="{{ route('books.edit', $book->id) }}" class="text-green-600
+                                    hover:text-green-900 mb-2 mr-2">Edit</a>
+
+                                    <form class="inline-block" action="{{ route('books.destroy', $book->id) }}"
+                                          method="POST" onsubmit="return confirm('Are you sure?');">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="submit" class="text-red-600 bg-transparent hover:text-red-900
+                                        mb-2 mr-2"
+                                               value="Delete">
+                                    </form>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+
 </x-app-layout>

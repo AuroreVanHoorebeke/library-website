@@ -14,7 +14,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //
+        $books = Books::all();
+
+        return view('library.index', compact('books'));
     }
 
     /**
@@ -24,62 +26,93 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view('library.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \App\Models\Books  $books
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'title' => 'required',
+           'author' => 'required',
+           'genre' => 'required',
+           'quantity' => 'required'
+        ]);
+
+        Books::create([
+            'title' => $request->title,
+            'author' => $request->author,
+            'genre' => $request->genre,
+            'quantity' => $request->quantity,
+        ]);
+
+        return redirect()->route('books.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Books  $books
+     * @param  \App\Models\Books  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Books $books)
+    public function show(Books $book)
     {
-        //
+        return view('library.show', compact('book'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Books  $books
+     * @param  \App\Models\Books  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Books $books)
+    public function edit(Books $book)
     {
-        //
+        return view('library.edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Books  $books
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Books $books)
+    public function update(Request $request, Books $book)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'genre' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        $book->update([
+            'title' => $request->title,
+            'author' => $request->author,
+            'genre' => $request->genre,
+            'quantity' => $request->quantity,
+        ]);
+
+        return redirect()->route('books.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Books  $books
+     * @param  \App\Models\Books  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Books $books)
+    public function destroy(Books $book)
     {
-        //
+        $book->delete();
+
+        return redirect()->route('books.index');
     }
 }

@@ -83,13 +83,11 @@
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="text-red-600 bg-transparent hover:text-red-900
-                                        mb-2 mr-2"
-                                               value="Delete">
+                                        mb-2 mr-2" value="Delete">
                                     </form>
                                     @endif
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>

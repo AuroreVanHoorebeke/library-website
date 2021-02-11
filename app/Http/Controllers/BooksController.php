@@ -132,4 +132,13 @@ class BooksController extends Controller
             abort(403);
         }
     }
+
+    public function getSuggestion(Books $book){
+
+        $bookGenre = $book->genre;
+
+        $suggestion = DB::table('books')->select('genre')->where('genre', $bookGenre)->get();
+
+        return $suggestion;
+    }
 }

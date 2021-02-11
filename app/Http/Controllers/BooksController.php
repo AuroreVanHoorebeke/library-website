@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\Role;
+use App\Models\User;
 
 class BooksController extends Controller
 {
@@ -26,7 +29,12 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('library.create');
+        if(Auth::user()->isAdministrator()){
+            return view('library.create');
+        } else {
+            abort(403);
+        }
+
     }
 
     /**
@@ -74,7 +82,12 @@ class BooksController extends Controller
      */
     public function edit(Books $book)
     {
-        return view('library.edit', compact('book'));
+        if(Auth::user()->isAdministrator()){
+            return view('library.edit', compact('book'));
+        } else {
+            abort(403);
+        }
+
     }
 
     /**
@@ -111,8 +124,12 @@ class BooksController extends Controller
      */
     public function destroy(Books $book)
     {
-        $book->delete();
+        if(Auth::user()->isAdministrator()){
+            $book->delete();
 
-        return redirect()->route('books.index');
+            return redirect()->route('books.index');
+        } else {
+            abort(403);
+        }
     }
 }

@@ -16,11 +16,14 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('books.index') }}" :active="request()->routeIs('books.index')">
-                        {{ __('Library') }}
-                    </x-jet-nav-link>
-                </div>
+{{--                TODO fix if/endif--}}
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('books.index') }}" :active="request()->routeIs('books.index')">
+                            {{ __('Library') }}
+                        </x-jet-nav-link>
+                    </div>
+                @if(Auth::user()->isAdministrator())
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('books.create') }}" :active="request()->routeIs('books.create')">
                         {{ __('Add Book') }}
@@ -32,6 +35,7 @@
                         {{ __('Users') }}
                     </x-jet-nav-link>
                 </div>
+                @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

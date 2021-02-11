@@ -9,7 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <h3>Lorem50</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid amet, assumenda autem corporis dolore dolorem ducimus enim et eveniet, expedita fugiat illum laborum minima necessitatibus numquam possimus quod quos repellat repudiandae saepe sint vitae! Ab amet dolorem ea, est et minima. Aspernatur autem consequuntur cupiditate illum, impedit obcaecati possimus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid amet, assumenda autem
+                    corporis dolore dolorem ducimus enim et eveniet, expedita fugiat illum laborum minima necessitatibus
+                    numquam possimus quod quos repellat repudiandae saepe sint vitae! Ab amet dolorem ea, est et minima.
+                    Aspernatur autem consequuntur cupiditate illum, impedit obcaecati possimus.</p>
             </div>
         </div>
     </div>
@@ -62,7 +65,8 @@
                                     <label for="title" class="text-sm leading-7 text-gray-600">Title</label>
                                     <input type="text" id="title" name="title"
                                            class="w-full px-4 py-2 mb-4 mr-4 text-base text-blue-700 bg-gray-100
-                                           border-transparent rounded-lg focus:border-gray-500 focus:bg-white focus:ring-0" value="{{ $book->title }}">
+                                           border-transparent rounded-lg focus:border-gray-500 focus:bg-white focus:ring-0"
+                                           value="{{ $book->title }}">
                                 </div>
 
                                 <div class="relative ">

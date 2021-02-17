@@ -69,10 +69,25 @@ class BooksController extends Controller
      * @param  \App\Models\Books  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Books $book)
+    /*public function show(Books $book)
     {
         return view('library.show', compact('book'));
+    }*/
+
+    public function show(Request $request, $id)
+    {
+        $book = Books::find($id);
+
+        $ofSameGenre = Books::where('genre', $book->genre)->inRandomOrder()->take(3)->get();
+        $ofSameAuthor = Books::where('author', $book->author)->inRandomOrder()->take(3)->get();
+
+        return view('library.show', [
+            'book' => $book,
+            'ofSameAuthor' => $ofSameAuthor,
+            'ofSameGenre' => $ofSameGenre,
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -133,12 +148,22 @@ class BooksController extends Controller
         }
     }
 
-    public function getSuggestion(Books $book){
-
-        $bookGenre = $book->genre;
-
-        $suggestion = DB::table('books')->select('genre')->where('genre', $bookGenre)->get();
-
-        return $suggestion;
-    }
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+//
+//    public static function getSuggestion(Books $book, $id){
+//        $book=Book::find($id);
+//
+//        $bookGenre = $book->genre;
+//
+//        $suggestion = DB::table('books')->select('genre')->where('genre', $bookGenre)->get();
+//
+//        // DB::table('books')->select('books.title', 'books.author', 'books.genre', 'books.id')->where('genre','Fantasy')->inRandomOrder()->take(3)->get()
+//
+//        return $suggestion;
+//    }
 }

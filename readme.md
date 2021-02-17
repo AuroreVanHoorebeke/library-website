@@ -22,7 +22,7 @@ This project's aim is using Laravel 8, Jetstream and Tailwind to create a librar
 - Learned how to use seeders for the database.
 
 ## Known Issues
-- Suggestion system for the books : not working yet.
+- Website's CSS to be fixed.  
 
 ## To add
 - Clients should be able to borrow books, for example with a shopping cart. An order is a list of books associated to 
